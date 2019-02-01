@@ -34,7 +34,6 @@ class OpenPayController extends Controller
             $customer = array(
                 'name' => $request->name,
                 'last_name' => $request->last_name,
-                'phone_number' => $request->phone_number,
                 'email' => $request->email
             );
 
@@ -42,7 +41,7 @@ class OpenPayController extends Controller
             $chargeRequest =  array(
                 'method' => 'card',
                 'source_id' => $request->token,
-                'amount' => env('OPENPAY_CHARGE'),
+                'amount' => env('OPENPAY_AMOUNT'),
                 'currency' => 'MXN',
                 'description' => 'Cargo de ejemplo Programación JJE',
                 'device_session_id' => $request->deviceSessionId,
@@ -51,7 +50,9 @@ class OpenPayController extends Controller
 
             $charge = $openpay->charges->create($chargeRequest);
 
-            return new JsonResponse($charge);
+            return response()->json([
+                'data' => $charge->id
+            ]);
 
         } catch (OpenpayApiTransactionError $e) {
             return response()->json([
