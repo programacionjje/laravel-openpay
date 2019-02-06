@@ -4,7 +4,12 @@
 git clone https://github.com/programacionjje/laravel-openpay.git
 ```
 
-> Add MERCHANT_ID, SECRET_KEY AND AMOUNT in .env file
+> Generate APP_KEY
+```
+php artisan key:generate
+```
+
+> Add MERCHANT_ID, SECRET_KEY AND AMOUNT in the .env file
 
 ```
 OPENPAY_ID=****
@@ -15,3 +20,7 @@ OPENPAY_AMOUNT=
 ```
 
 > Run `composer install` in the project
+
+> valet link
+
+> valet open
